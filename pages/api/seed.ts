@@ -105,7 +105,7 @@ async function handler(_req: NextApiRequest, res: NextApiResponse) {
     res.status(200).send('ok.');
   } catch (error) {
     res.status(500).json({
-      error: 'Error occured during seed process!'
+      error: error
     });
   }
 }
