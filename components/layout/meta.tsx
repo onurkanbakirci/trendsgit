@@ -1,11 +1,11 @@
 import Head from 'next/head';
 
 export const defaultMetaProps = {
-  title: 'MongoDB Starter Kit',
+  title: 'TrendsGit',
   description:
     'Explore the latest trending repositories on GitHub, curated for you.',
   ogImage: `https://assets.vercel.com/image/upload/v1654626375/twitter-cards/mongo-integration-starter.png`,
-  ogUrl: 'https://mongodb.vercel.app'
+  ogUrl: 'https://trendsgit.com'
 };
 
 export interface MetaProps {

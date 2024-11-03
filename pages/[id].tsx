@@ -22,12 +22,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const { repos } = await getAllRepos();
 
-    const ogUrl = `https://mongodb.vercel.app/${repoData.repo.full_name}`;
+    const ogUrl = `https://trendsgit.com/${repoData.repo.full_name}`;
     const meta = {
         ...defaultMetaProps,
         title: `${repoData.repo.full_name}'s Profile | TrendsGit`,
         ogImage: `https://api.microlink.io/?url=${ogUrl}&screenshot=true&meta=false&embed=screenshot.url`,
-        ogUrl: `https://mongodb.vercel.app/${repoData.repo.full_name}`
+        ogUrl: `https://trendsgit.com/${repoData.repo.full_name}`
     };
 
     return {
