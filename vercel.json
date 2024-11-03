@@ -1,6 +1,6 @@
 {
     "functions": {
-        "api/seed.ts": {
+        "pages/api/seed.ts": {
             "maxDuration": 60
         }
     },
