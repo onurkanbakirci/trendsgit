@@ -13,12 +13,12 @@ datasource db {
 
 model Repo {
   id                Int      @id @default(autoincrement())
-  github_id         Int      @unique
+  github_id         String
   node_id           String
   name              String
   full_name         String
   owner_login       String
-  owner_id          Int
+  owner_id          String
   owner_avatar_url  String
   owner_html_url    String
   html_url          String

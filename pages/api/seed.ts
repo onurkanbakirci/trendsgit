@@ -9,7 +9,7 @@ interface RepoInfo {
   name: string;
   full_name: string;
   owner_login: string;
-  owner_id: number;
+  owner_id: string;
   owner_avatar_url: string;
   owner_html_url: string;
   html_url: string;
@@ -62,12 +62,12 @@ async function handler(_req: NextApiRequest, res: NextApiResponse) {
         const repoData = apiResponse.data;
 
         repos.push({
-          github_id: repoData.id,
-          node_id: repoData.node_id,
+          github_id: repoData.id.toString(),
+          node_id: repoData.node_id.toString(),
           name: repoData.name,
           full_name: repoData.full_name,
           owner_login: repoData.owner.login,
-          owner_id: repoData.owner.id,
+          owner_id: repoData.owner.id.toString(),
           owner_avatar_url: repoData.owner.avatar_url,
           owner_html_url: repoData.owner.html_url,
           html_url: repoData.html_url,
@@ -91,11 +91,13 @@ async function handler(_req: NextApiRequest, res: NextApiResponse) {
       }
 
       // Add a small delay to avoid hitting rate limits
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
+    const reversedRepos = repos.reverse();
+
     const insert = await prisma.repo.createMany({
-      data: repos
+      data: reversedRepos
     });
 
     if (insert.count === repos.length) {
