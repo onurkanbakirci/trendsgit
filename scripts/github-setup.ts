@@ -94,7 +94,7 @@ export default async function getTrendingRepos(): Promise<RepoInfo[]> {
     }
 
     const insert = await prisma.repo.createMany({
-      data: repos
+      data: repos as any
     });
 
     if (insert.count === repos.length) {
