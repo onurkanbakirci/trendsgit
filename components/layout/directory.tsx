@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { SearchIcon } from '@/components/icons';
 import DirectoryResults from './directory-results';
 import { searchRepos } from 'src/services/repo.service';
+import { getAllLanguages } from 'src/services/language.service';
 
 export default function Directory({
   results,
@@ -47,13 +48,12 @@ export default function Directory({
 
   async function fetchLanguages() {
     try {
-      const response = await fetch('https://api.github.com/repos/microsoft/vscode/languages');
-      if (!response.ok) {
+      const { languages } = await getAllLanguages();
+      if (!languages.length) {
         throw new Error('Network response was not ok');
       }
-      const languagesData = await response.json();
-      const languageList = Object.keys(languagesData);
-      setLanguages(languageList); // Set the languages in state
+
+      setLanguages(languages);
     } catch (error) {
       console.error('Error fetching languages:', error);
     }
