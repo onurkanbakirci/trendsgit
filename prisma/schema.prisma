@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "sqlite"
+  url          = "file:./trendsgit.db"
+  relationMode = "prisma"
+}
+
+model Repo {
+  id                Int      @id @default(autoincrement())
+  github_id         Int      @unique
+  node_id           String
+  name              String
+  full_name         String
+  owner_login       String
+  owner_id          Int
+  owner_avatar_url  String
+  owner_html_url    String
+  html_url          String
+  description       String?
+  url               String
+  size              Int
+  stargazers_count  Int
+  watchers_count    Int
+  language          String?
+  forks_count       Int
+  open_issues_count Int
+  license_key       String?
+  license_name      String?
+  topics            String
+  default_branch    String
+  subscribers_count Int
+  created_at        DateTime @default(now())
+
+  @@map("repos")
+}
