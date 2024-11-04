@@ -9,13 +9,12 @@ export default function Home({ repo }: { repo: any }) {
 export async function getServerSideProps() {
 
   const { repos } = await getAllRepos();
-  const { repo } = await getRepo(1);
 
   return {
     props: {
       meta: defaultMetaProps,
       results: repos,
-      repo: repo
+      repo: repos[0].repos[0]
     }
   };
 };

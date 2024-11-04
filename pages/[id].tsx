@@ -13,14 +13,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { id } = context.params as Params;
 
     var repoData = await getRepo(parseInt(id as string));
+    const { repos } = await getAllRepos();
 
     if (!repoData) {
         return {
             notFound: true,
         };
     }
-
-    const { repos } = await getAllRepos();
 
     const ogUrl = `https://trendsgit.com/${repoData.repo.full_name}`;
     const meta = {
