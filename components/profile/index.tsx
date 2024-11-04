@@ -11,6 +11,7 @@ import {
 import BlurImage from '../blur-image';
 import { useState, useEffect } from 'react';
 import Markdown from 'markdown-to-jsx';
+import { languageColors } from '../language-colors';
 
 const formatNumber = (num: number): string => {
   if (num >= 1000000) {
@@ -22,14 +23,6 @@ const formatNumber = (num: number): string => {
 };
 
 export const profileWidth = 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8';
-
-const languageColors: { [key: string]: string } = {
-  JavaScript: 'bg-[#f1e05a]',
-  TypeScript: 'bg-[#3178c6]',
-  Python: 'bg-[#3572A5]',
-  Java: 'bg-[#b07219]',
-  // Add more languages as needed
-};
 
 export default function Profile({ repo }: { repo: any }) {
 
@@ -170,7 +163,7 @@ export default function Profile({ repo }: { repo: any }) {
               <LoadingDots color={'#FFF'} />
             </div>
           ) : readmeContent ? (
-            <Markdown>{readmeContent}</Markdown>
+            <Markdown options={{ disableParsingRawHTML: true }}>{readmeContent}</Markdown>
           ) : (
             <p>No readme.md file</p>
           )}

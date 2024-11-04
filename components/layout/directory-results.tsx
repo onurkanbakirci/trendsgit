@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import BlurImage from '../blur-image';
 import { CheckInCircleIcon, ForkIcon, StarIcon, WatchIcon } from '@/components/icons';
+import { languageColors } from '../language-colors';
 
 const formatNumber = (num: number): string => {
   if (num >= 1000000) {
@@ -52,6 +53,13 @@ export default function DirectoryResults({ repos }: { repos: any[] }) {
                     <WatchIcon />
                     {formatNumber(repo.subscribers_count)}
                   </div>
+                  {repo.language && (
+                    <div className="flex items-center">
+                      <span className={`w-3 h-3 rounded-full mr-2 ${languageColors[repo.language] || 'bg-gray-400'
+                        }`} />
+                      {repo.language}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

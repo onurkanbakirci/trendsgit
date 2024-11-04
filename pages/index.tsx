@@ -1,6 +1,6 @@
 import Profile from '@/components/profile';
 import { defaultMetaProps } from '@/components/layout/meta';
-import { getAllRepos, getRepo } from '../src/services/repo.service';
+import { getAllRepos } from '../src/services/repo.service';
 
 export default function Home({ repo }: { repo: any }) {
   return <Profile repo={repo} />;
