@@ -12,28 +12,28 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const { id } = context.params as Params;
 
-    var repoData = await getRepo(parseInt(id as string));
+    var { repo } = await getRepo(parseInt(id as string));
     const { repos } = await getAllRepos();
 
-    if (!repoData) {
+    if (!repo) {
         return {
             notFound: true,
         };
     }
 
-    const ogUrl = `https://trendsgit.com/${repoData.repo.full_name}`;
+    const ogUrl = `https://trendsgit.com/${repo.name}`;
     const meta = {
         ...defaultMetaProps,
-        title: `${repoData.repo.full_name}'s Profile | TrendsGit`,
+        title: `${repo.name}'s Profile | TrendsGit`,
         ogImage: `https://api.microlink.io/?url=${ogUrl}&screenshot=true&meta=false&embed=screenshot.url`,
-        ogUrl: `https://trendsgit.com/${repoData.repo.full_name}`
+        ogUrl
     };
 
     return {
         props: {
             meta,
             results: repos,
-            repo: repoData.repo
+            repo
         }
     };
 };
