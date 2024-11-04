@@ -12,7 +12,6 @@ const formatNumber = (num: number): string => {
 };
 
 export default function DirectoryResults({ repos }: { repos: any[] }) {
-  
   return (
     <ul role="list" className="relative z-0 directory-divide-y">
       {repos?.map((repo) => (

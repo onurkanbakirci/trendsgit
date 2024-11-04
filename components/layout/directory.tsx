@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useDebounce } from '@/lib/hooks/use-debounce';
 import { useEffect, useState } from 'react';
-import { SearchIcon } from '@/components/icons';
+import { LoadingDots, SearchIcon } from '@/components/icons';
 import DirectoryResults from './directory-results';
 import { searchRepos } from 'src/services/repo.service';
 import { getAllLanguages } from 'src/services/language.service';
@@ -17,6 +17,7 @@ export default function Directory({
   const [selectedTopic, setSelectedTopic] = useState<string>('');
   const [searchedRepos, setSearchedRepos] = useState<any[] | null>(null);
   const debouncedQuery = useDebounce(query, 200);
+  const [loading, setLoading] = useState(false); // Add a loading state
   const [languages, setLanguages] = useState<string[]>([]); // State for languages
 
   useEffect(() => {
@@ -30,6 +31,9 @@ export default function Directory({
   async function performSearch() {
     const queryParams = new URLSearchParams();
     if (debouncedQuery.length > 0 || selectedLanguage) {
+      setSearchedRepos(null);
+      setLoading(true);
+
       if (debouncedQuery.length > 0) {
         queryParams.append('name', debouncedQuery);
       }
@@ -40,6 +44,7 @@ export default function Directory({
 
       const { repos } = await searchRepos(queryParams.toString());
 
+      setLoading(false);
       setSearchedRepos(repos);
     } else {
       setSearchedRepos(null);
@@ -149,11 +154,16 @@ export default function Directory({
           : searchedRepos && searchedRepos.length > 0 ? (
             <DirectoryResults repos={searchedRepos} />
           )
-            : (
+            : !loading && (
               <div className="px-6 py-6">
                 <p className="text-center text-gray-500">No results found</p>
               </div>
             )}
+        {loading && (
+          <div className="flex justify-center">
+            <LoadingDots color={'#FFF'} />
+          </div>
+        )}
       </nav>
     </aside>
   );

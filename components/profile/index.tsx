@@ -6,6 +6,7 @@ import {
   WatchIcon,
   ForkIcon,
   LawIcon,
+  LoadingDots,
 } from '@/components/icons';
 import BlurImage from '../blur-image';
 import { useState, useEffect } from 'react';
@@ -33,19 +34,22 @@ const languageColors: { [key: string]: string } = {
 export default function Profile({ repo }: { repo: any }) {
 
   const [data, setData] = useState({
-    ...repo,
-    serializedContent: null
+    ...repo
   });
+
 
   const [readmeContent, setReadmeContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+
     async function fetchReadme() {
       try {
+        setIsLoading(true);
         const response = await fetch(
-          `https://raw.githubusercontent.com/${repo.full_name}/master/README.md`
+          `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/README.md`
         );
+
         const content = await response.text();
         setReadmeContent(content);
       } catch (error) {
@@ -83,7 +87,7 @@ export default function Profile({ repo }: { repo: any }) {
           <div className="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
             <div className="flex min-w-0 flex-1 flex-col">
               <div className="flex items-center space-x-2">
-                <a 
+                <a
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -110,9 +114,8 @@ export default function Profile({ repo }: { repo: any }) {
                 </div>
                 {repo.language && (
                   <div className="flex items-center">
-                    <span className={`w-3 h-3 rounded-full mr-2 ${
-                      languageColors[repo.language] || 'bg-gray-400'
-                    }`} />
+                    <span className={`w-3 h-3 rounded-full mr-2 ${languageColors[repo.language] || 'bg-gray-400'
+                      }`} />
                     {repo.language}
                   </div>
                 )}
@@ -163,9 +166,13 @@ export default function Profile({ repo }: { repo: any }) {
       <div className={`${profileWidth} mt-16`}>
         <article className="mt-3 max-w-2xl text-sm tracking-wider leading-6 text-white font-mono prose prose-headings:text-white prose-a:text-white">
           {isLoading ? (
-            <p>Loading README...</p>
-          ) : (
+            <div className="flex justify-center">
+              <LoadingDots color={'#FFF'} />
+            </div>
+          ) : readmeContent ? (
             <Markdown>{readmeContent}</Markdown>
+          ) : (
+            <p>No readme.md file</p>
           )}
         </article>
       </div>
