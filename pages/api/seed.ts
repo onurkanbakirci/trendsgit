@@ -70,14 +70,21 @@ async function handler(_req: NextApiRequest, res: NextApiResponse) {
 
     const reversedRepos = repos.reverse();
 
-    const insert = await prisma.repo.createMany({
-      data: reversedRepos
-    });
+    try {
+      const insert = await prisma.repo.createMany({
+        data: reversedRepos
+      });
 
-    if (insert.count === repos.length) {
-      console.log('Successfully inserted records');
+      if (insert.count === repos.length) {
+        console.log('Successfully inserted records');
+      }
+    } catch (insertError) {
+      console.error('Error inserting records:', insertError);
+      // Optionally, you can send a more specific error response
+      res
+        .status(500)
+        .json({ error: 'Failed to insert records', details: insertError });
     }
-
     res.status(200).send('ok.');
   } catch (error) {
     res.status(500).json({
