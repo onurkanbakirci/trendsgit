@@ -1,0 +1,43 @@
+name: Seed Database and Push Changes
+
+on:
+  schedule:
+    - cron: '30 11 * * *'  # Runs at 11:30 UTC daily
+
+jobs:
+  seed_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'  # Use the appropriate Node.js version
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Start Next.js app in the background
+        run: npm run build && npm run start &
+
+      - name: Wait for the server to start
+        run: sleep 10  # Adjust as needed to ensure the server is running
+
+      - name: Send request to /api/seed
+        run: |
+          curl http://localhost:3000/api/seed
+
+      - name: Check for changes in SQLite DB
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if [[ `git status --porcelain` ]]; then
+            git add .
+            git commit -m "feat: new entities added"
+            git push
+          else
+            echo "No changes to commit."
+          fi
