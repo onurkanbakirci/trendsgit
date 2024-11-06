@@ -2,38 +2,12 @@ import { prisma } from '@/lib/db';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-interface RepoInfo {
-  github_id: number;
-  node_id: string;
-  name: string;
-  full_name: string;
-  owner_login: string;
-  owner_id: number;
-  owner_avatar_url: string;
-  owner_html_url: string;
-  html_url: string;
-  description: string | null;
-  url: string;
-  size: number;
-  stargazers_count: number;
-  watchers_count: number;
-  language: string | null;
-  forks_count: number;
-  open_issues_count: number;
-  license_key: string | null;
-  license_name: string | null;
-  topics: string; // Will be joined as comma-separated string
-  default_branch: string;
-  subscribers_count: number;
-  created_at: Date;
-}
-
-export default async function getTrendingRepos(): Promise<RepoInfo[]> {
+export default async function getTrendingRepos() {
   try {
     // Fetch trending page
     const response = await axios.get('https://github.com/trending?since=daily');
     const $ = cheerio.load(response.data);
-    const repos: RepoInfo[] = [];
+    const repos = [];
 
     // Find repository links and extract owner/repo
     const repoLinks = $('a[href*="/"]:has(.octicon-repo)');
@@ -94,7 +68,7 @@ export default async function getTrendingRepos(): Promise<RepoInfo[]> {
     }
 
     const insert = await prisma.repo.createMany({
-      data: repos as any
+      data: repos
     });
 
     if (insert.count === repos.length) {
