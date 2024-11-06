@@ -2,9 +2,10 @@
 
 Trending Repos Archive is a platform that lets users explore the historical popularity of repositories across various platforms.
 
+Project website: [https://trendsgit.vercel.app](https://trendsgit.vercel.app)
+
 ![](/public/og.png)
 
-Project website: [https://trendsgit.vercel.app](https://trendsgit.vercel.app)
 
 ## Why Trendsgit?
 
@@ -34,8 +35,18 @@ Ready to explore? Visit our website and start uncovering the trends in open-sour
   - `id`: (optional) The ID of the repository to fetch a specific repo.
   - `name`: (optional) A string to filter repositories by name.
   - `language`: (optional) A string to filter repositories by programming language.
+- **Example Request**:
+  ```http
+  GET https://trendsgit.vercel.app/api/repos?id=123
+  ```
+  This request fetches the repository with ID 123.
 
 ### Get Languages
 - **Endpoint**: `/api/languages`
 - **Method**: `GET`
 - **Response**: Returns a list of supported programming languages.
+- **Example Request**:
+  ```http
+  GET https://trendsgit.vercel.app/api/languages
+  ```
+  This request retrieves all supported programming languages.
