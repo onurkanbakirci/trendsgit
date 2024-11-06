@@ -7,9 +7,9 @@ import { searchRepos } from 'src/services/repo.service';
 import { getAllLanguages } from 'src/services/language.service';
 
 export default function Directory({
-  results,
+  repos,
 }: {
-  results: any[];
+  repos: any[];
 }) {
 
   const [query, setQuery] = useState('');
@@ -130,24 +130,24 @@ export default function Directory({
         aria-label="Directory"
       >
         {debouncedQuery.length === 0 && selectedLanguage == "" ? (
-          results.map((result) => (
-            <div key={result.daysAgo} className="relative">
+          repos.map((repo) => (
+            <div key={repo.daysAgo} className="relative">
               <div className="bg-dark-accent-1 px-6 py-1 text-sm font-bold text-white uppercase">
                 <h3>
-                  {result.daysAgo === 0
+                  {repo.daysAgo === 0
                     ? 'Today'
-                    : result.daysAgo === 1
+                    : repo.daysAgo === 1
                       ? 'Yesterday'
-                      : result.daysAgo <= 7
-                        ? new Date(result.repos[0].created_at).toLocaleDateString('en-US', { weekday: 'long' })
-                        : new Date(result.repos[0].created_at).toLocaleDateString('en-US', {
+                      : repo.daysAgo <= 7
+                        ? new Date(repo.repos[0].created_at).toLocaleDateString('en-US', { weekday: 'long' })
+                        : new Date(repo.repos[0].created_at).toLocaleDateString('en-US', {
                           month: 'long',
                           day: 'numeric',
                           year: 'numeric'
                         })}
                 </h3>
               </div>
-              <DirectoryResults repos={result.repos} />
+              <DirectoryResults repos={repo.repos} />
             </div>
           ))
         )

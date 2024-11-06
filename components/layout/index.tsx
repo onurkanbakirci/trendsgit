@@ -5,15 +5,15 @@ import Directory from './directory';
 import Toast from '@/components/layout/toast';
 import { useRouter } from 'next/router';
 import { LoadingDots } from '@/components/icons';
+import { useRepoContext } from 'pages/context/RepoContext';
 
 export default function Layout({
-  results = [],
   children
 }: {
-  results?: any[];
   children: ReactNode;
 }) {
-
+  const { repos } = useRepoContext();
+  
   const router = useRouter();
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -32,7 +32,7 @@ export default function Layout({
       <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
-        results={results}
+        repos={repos}
       />
 
       <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
@@ -42,7 +42,7 @@ export default function Layout({
             {children}
           </main>
           <div className="hidden md:order-first h-screen md:flex md:flex-col">
-            <Directory results={results} />
+            <Directory repos={repos} />
           </div>
         </div>
       </div>

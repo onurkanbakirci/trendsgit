@@ -6,11 +6,11 @@ import Directory from './directory';
 export default function Sidebar({
   sidebarOpen,
   setSidebarOpen,
-  results,
+  repos,
 }: {
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
-  results: any[];
+  repos: any[];
 }) {
   return (
     <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -58,7 +58,7 @@ export default function Sidebar({
               </div>
             </Transition.Child>
             {/* Add your sidebar content here */}
-            <Directory results={results} />
+            <Directory repos={repos} />
           </Dialog.Panel>
         </Transition.Child>
       </Dialog>

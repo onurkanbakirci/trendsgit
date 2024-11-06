@@ -1,7 +1,7 @@
 import { ParsedUrlQuery } from 'querystring';
 import { GetServerSidePropsContext } from 'next';
 export { default } from '.';
-import { getAllRepos, getRepo } from 'src/services/repo.service';
+import { getRepo } from 'src/services/repo.service';
 import { defaultMetaProps } from '@/components/layout/meta';
 
 interface Params extends ParsedUrlQuery {
@@ -13,7 +13,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { id } = context.params as Params;
 
     var { repo } = await getRepo(parseInt(id as string));
-    const { repos } = await getAllRepos();
 
     if (!repo) {
         return {
@@ -32,7 +31,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
         props: {
             meta,
-            results: repos,
             repo
         }
     };
