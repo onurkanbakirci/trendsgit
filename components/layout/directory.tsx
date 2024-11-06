@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useDebounce } from '@/lib/hooks/use-debounce';
 import { useEffect, useState } from 'react';
-import { LoadingDots, SearchIcon } from '@/components/icons';
+import { GitHubIcon, LoadingDots, SearchIcon } from '@/components/icons';
 import DirectoryResults from './directory-results';
 import { searchRepos } from 'src/services/repo.service';
 import { getAllLanguages } from 'src/services/language.service';
@@ -67,8 +67,8 @@ export default function Directory({
   return (
     <aside className="flex-shrink-0 w-full bg-black sm:w-96 h-full overflow-scroll border-r border-gray-800">
       <div className="px-6 pt-6 pb-0 sticky top-0 bg-black z-20">
-        <Link href="/">
-
+        <Link href="https://github.com/onurkanbakirci/trendsgit">
+          <GitHubIcon className="h-6 w-6 text-white" />
         </Link>
         <p className="mt-8 text-2xl text-white font-bold">Historical Trending Repositories</p>
         <p className="mt-2 text-sm text-dark-accent-5">
