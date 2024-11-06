@@ -14,7 +14,7 @@ Unlike typical trending repositories pages that show only the latest trends, thi
 ## Key Features
 
 - **Historical Insights**: Dive deep into the past to see how repositories have changed over time.
-- **Visual Graphs**: Enjoy intuitive visualizations that make data easy to understand.
+- **API Endpoints**: Utilize our API endpoints to integrate historical trending data into your applications.
 - **Category Trends**: Explore shifts in popularity across different categories like languages, tags, or topics.
 - **Developer Interest**: Track how interest in certain technologies has evolved, helping you stay ahead of the curve.
 
