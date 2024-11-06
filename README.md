@@ -24,3 +24,18 @@ Perfect for developers, tech enthusiasts, and industry analysts, Trending Repos 
 ## Get Started
 
 Ready to explore? Visit our website and start uncovering the trends in open-source repositories today!
+
+## API Endpoints
+
+### Get Repositories
+- **Endpoint**: `/api/repos`
+- **Method**: `GET`
+- **Query Parameters**:
+  - `id`: (optional) The ID of the repository to fetch a specific repo.
+  - `name`: (optional) A string to filter repositories by name.
+  - `language`: (optional) A string to filter repositories by programming language.
+
+### Get Languages
+- **Endpoint**: `/api/languages`
+- **Method**: `GET`
+- **Response**: Returns a list of supported programming languages.
