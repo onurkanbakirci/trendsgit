@@ -27,7 +27,7 @@ jobs:
       - name: Wait for the server to be ready
         run: |
           for i in {1..10}; do
-            curl -s http://localhost:3000/api/seed && break
+            curl -s http://localhost:3000/api/repos && break
             echo "Waiting for server to be ready..."
             sleep 5
           done
@@ -43,7 +43,21 @@ jobs:
           if [[ `git status --porcelain` ]]; then
             git add .
             git commit -m "feat: new entities added"
-            git push
+            git push "https://${PAT}@github.com/onurkanbakirci/trendsgit.git" HEAD:main
+          else
+            echo "No changes to commit."
+          fi
+
+                - name: Commit and push changes if any
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if [[ `git status --porcelain` ]]; then
+            git add .
+            git commit -m "feat: new entities added"
+            git push "https://${GH_PAT}@github.com/onurkanbakirci/trendsgit.git" HEAD:main
           else
             echo "No changes to commit."
           fi
