@@ -3,6 +3,7 @@ name: Seed Database and Push Changes
 on:
   schedule:
     - cron: '30 11 * * *'  # Runs at 11:30 UTC daily
+  workflow_dispatch:
 
 jobs:
   seed_and_push:
