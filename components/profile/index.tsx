@@ -30,7 +30,6 @@ export default function Profile({ repo }: { repo: any }) {
     ...repo
   });
 
-
   const [readmeContent, setReadmeContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
 

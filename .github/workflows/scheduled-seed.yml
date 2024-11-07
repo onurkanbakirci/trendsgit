@@ -23,8 +23,13 @@ jobs:
       - name: Start Next.js app in the background
         run: npm run build && npm run start &
 
-      - name: Wait for the server to start
-        run: sleep 10  # Adjust as needed to ensure the server is running
+      - name: Wait for the server to be ready
+        run: |
+          for i in {1..10}; do
+            curl -s http://localhost:3000/api/seed && break
+            echo "Waiting for server to be ready..."
+            sleep 5
+          done
 
       - name: Send request to /api/seed
         run: |
