@@ -5,7 +5,7 @@ import Directory from './directory';
 import Toast from '@/components/layout/toast';
 import { useRouter } from 'next/router';
 import { LoadingDots } from '@/components/icons';
-import { useRepoContext } from 'pages/context/RepoContext';
+import { useRepoContext } from 'context/RepoContext';
 
 export default function Layout({
   children

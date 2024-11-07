@@ -1,7 +1,7 @@
 import Profile from '@/components/profile';
 import { defaultMetaProps } from '@/components/layout/meta';
 import { getAllRepos } from '../src/services/repo.service';
-import { useRepoContext } from './context/RepoContext';
+import { useRepoContext } from '../context/RepoContext';
 import { useEffect } from 'react';
 
 export default function Home({ repo, repos }: { repo: any, repos: any }) {

@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { AppProps } from 'next/app';
 import Layout from '@/components/layout';
-import { RepoProvider } from './context/RepoContext';
+import { RepoProvider } from '../context/RepoContext';
 
 export default function MyApp({
   Component,
