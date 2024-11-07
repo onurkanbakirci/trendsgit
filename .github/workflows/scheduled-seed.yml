@@ -5,6 +5,9 @@ on:
     - cron: '30 11 * * *'  # Runs at 11:30 UTC daily
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   seed_and_push:
     runs-on: ubuntu-latest
@@ -12,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{secrets.PAT}}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
