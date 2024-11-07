@@ -37,20 +37,8 @@ jobs:
           curl http://localhost:3000/api/seed
 
       - name: Check for changes in SQLite DB
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if [[ `git status --porcelain` ]]; then
-            git add .
-            git commit -m "feat: new entities added"
-            git push "https://${PAT}@github.com/onurkanbakirci/trendsgit.git" HEAD:main
-          else
-            echo "No changes to commit."
-          fi
-
-                - name: Commit and push changes if any
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_PAT: ${{ secrets.PAT }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -61,3 +49,5 @@ jobs:
           else
             echo "No changes to commit."
           fi
+
+                - name: Commit and push changes if any
