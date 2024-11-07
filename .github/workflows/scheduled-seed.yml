@@ -49,5 +49,3 @@ jobs:
           else
             echo "No changes to commit."
           fi
-
-                - name: Commit and push changes if any
