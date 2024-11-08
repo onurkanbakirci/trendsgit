@@ -17,7 +17,7 @@ export default function Toast({ username }: { username?: string }) {
     >
       <div className="rounded-[14px] w-full h-full bg-[#111111] flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 px-5">
         <p className="text-white text-[13px] font-mono h-[40px] flex items-center justify-center p-3">
-          Our data is updated daily at UTC 11:00 AM to ensure you have the latest insights and trends.
+          Our data is updated daily at UTC 11:30 AM to ensure you have the latest insights and trends.
           <button
             className="contents underline text-blue-400 font-bold"
             onClick={() => {
