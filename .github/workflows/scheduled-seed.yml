@@ -5,10 +5,11 @@ on:
     - cron: '30 11 * * *'  # Runs at 11:30 UTC daily
   workflow_dispatch:
 
+permissions:
+    contents: write
+
 jobs:
   seed_and_push:
-    permissions:
-      contents: write
 
     runs-on: ubuntu-latest
 
@@ -16,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          token: ${{secrets.PAT}}
+          token: ${{ secrets.PAT }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -42,11 +43,9 @@ jobs:
           curl http://localhost:3000/api/seed
 
       - name: Check for changes in SQLite DB
-        env:
-          GH_PAT: ${{ secrets.PAT }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "onurkanbakirci"
+          git config --global user.email "onurkanbakirci@users.noreply.github.com"
           git add .
           git commit -m "feat: new entities added"
-          git push "https://${GH_PAT}@github.com/onurkanbakirci/trendsgit.git" HEAD:main
+          git push
