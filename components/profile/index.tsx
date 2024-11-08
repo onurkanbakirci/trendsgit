@@ -10,9 +10,10 @@ import {
 } from '@/components/icons';
 import BlurImage from '../blur-image';
 import { useState, useEffect } from 'react';
-import Markdown from 'markdown-to-jsx';
 import { languageColors } from '../language-colors';
 import { useRepoContext } from 'context/RepoContext';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
 
 const formatNumber = (num: number): string => {
   if (num >= 1000000) {
@@ -26,19 +27,16 @@ const formatNumber = (num: number): string => {
 export const profileWidth = 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8';
 
 export default function Profile({ id }: { id: any }) {
-  const { repos, lastRepo, setLastRepo } = useRepoContext();
+  const { repos } = useRepoContext();
 
   const [data, setData] = useState<any>(null);
   const [readmeContent, setReadmeContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (lastRepo?.id !== id) {
-      const repoData = getRepoById(id);
-      setData(repoData);
-      setLastRepo(repoData);
-    }
-  }, [id, lastRepo, setLastRepo]);
+    const repoData = getRepoById(id);
+    setData(repoData);
+  }, [id, repos]);
 
   useEffect(() => {
     async function fetchReadme() {
@@ -174,7 +172,7 @@ export default function Profile({ id }: { id: any }) {
               <LoadingDots color={'#FFF'} />
             </div>
           ) : readmeContent ? (
-            <Markdown options={{ disableParsingRawHTML: true }}>{readmeContent}</Markdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{readmeContent}</ReactMarkdown>
           ) : (
             <p>No readme.md file</p>
           )}
