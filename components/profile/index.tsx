@@ -27,9 +27,8 @@ export const profileWidth = 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8';
 
 export default function Profile({ id }: { id: any }) {
   const { repos } = useRepoContext();
-  
-  const [data, setData] = useState<any>();
 
+  const [data, setData] = useState<any>(null);
   const [readmeContent, setReadmeContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,7 +38,7 @@ export default function Profile({ id }: { id: any }) {
       if (repo) {
         return repo;
       }
-    }    
+    }
     return null;
   }
 
@@ -60,11 +59,17 @@ export default function Profile({ id }: { id: any }) {
   }
 
   useEffect(() => {
-    setData({
-      ...getRepoById(id)
-    })
-    fetchReadme();
+    const repoData = getRepoById(id);
+    if (repoData) {
+      setData(repoData);
+    }
   }, [repos, id])
+
+  useEffect(() => {
+    if (data) { // Only fetch if data is available
+      fetchReadme();
+    }
+  }, [data])
 
   return (
     <div className="min-h-screen pb-20">

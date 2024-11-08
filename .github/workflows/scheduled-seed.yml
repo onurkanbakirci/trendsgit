@@ -47,10 +47,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if [[ `git status --porcelain` ]]; then
-            git add .
-            git commit -m "feat: new entities added"
-            git push "https://${GH_PAT}@github.com/onurkanbakirci/trendsgit.git" HEAD:main
-          else
-            echo "No changes to commit."
-          fi
+          git add .
+          git commit -m "feat: new entities added"
+          git push "https://${GH_PAT}@github.com/onurkanbakirci/trendsgit.git" HEAD:main
