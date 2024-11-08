@@ -1,7 +1,6 @@
 import { ParsedUrlQuery } from 'querystring';
 import { GetServerSidePropsContext } from 'next';
 export { default } from '.';
-import { getRepo } from 'src/services/repo.service';
 import { defaultMetaProps } from '@/components/layout/meta';
 
 interface Params extends ParsedUrlQuery {

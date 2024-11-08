@@ -53,13 +53,13 @@ export default function DirectoryResults({ repos }: { repos: any[] }) {
                     <WatchIcon />
                     {formatNumber(repo.subscribers_count)}
                   </div>
-                  {repo.language && (
+                 {/*  {repo.language && (
                     <div className="flex items-center">
                       <span className={`w-3 h-3 rounded-full mr-2 ${languageColors[repo.language] || 'bg-gray-400'
                         }`} />
                       {repo.language}
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

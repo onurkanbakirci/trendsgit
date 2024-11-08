@@ -26,11 +26,39 @@ const formatNumber = (num: number): string => {
 export const profileWidth = 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8';
 
 export default function Profile({ id }: { id: any }) {
-  const { repos } = useRepoContext();
+  const { repos, lastRepo, setLastRepo } = useRepoContext();
 
   const [data, setData] = useState<any>(null);
   const [readmeContent, setReadmeContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (lastRepo?.id !== id) {
+      const repoData = getRepoById(id);
+      setData(repoData);
+      setLastRepo(repoData);
+    }
+  }, [id, lastRepo, setLastRepo]);
+
+  useEffect(() => {
+    async function fetchReadme() {
+      if (!data) return;
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://raw.githubusercontent.com/${data.full_name}/${data.default_branch}/README.md`
+        );
+        const content = await response.text();
+        setReadmeContent(content);
+      } catch (error) {
+        console.error('Error fetching README:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchReadme();
+  }, [data]);
 
   function getRepoById(repoId: any) {
     for (const item of repos) {
@@ -41,35 +69,6 @@ export default function Profile({ id }: { id: any }) {
     }
     return null;
   }
-
-  async function fetchReadme() {
-    try {
-      setIsLoading(true);
-      const response = await fetch(
-        `https://raw.githubusercontent.com/${data.full_name}/${data.default_branch}/README.md`
-      );
-
-      const content = await response.text();
-      setReadmeContent(content);
-    } catch (error) {
-      console.error('Error fetching README:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    const repoData = getRepoById(id);
-    if (repoData) {
-      setData(repoData);
-    }
-  }, [repos, id])
-
-  useEffect(() => {
-    if (data) { // Only fetch if data is available
-      fetchReadme();
-    }
-  }, [data])
 
   return (
     <div className="min-h-screen pb-20">
