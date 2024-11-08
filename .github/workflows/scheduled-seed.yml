@@ -5,11 +5,11 @@ on:
     - cron: '30 11 * * *'  # Runs at 11:30 UTC daily
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   seed_and_push:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
 
     steps:
