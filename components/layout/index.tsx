@@ -37,7 +37,7 @@ export default function Layout({
 
       <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
         <div className="flex-1 relative z-0 flex overflow-hidden">
-          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
+          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last overflow-x-hidden">
             <Navbar setSidebarOpen={setSidebarOpen} />
             {children}
           </main>
