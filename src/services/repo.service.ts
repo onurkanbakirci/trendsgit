@@ -14,6 +14,20 @@ export async function getAllRepos() {
   };
 }
 
+export async function getReposByCreationDate(created_at: string) {
+  const url = `${baseUrl}/api/repos?created_at=${created_at}`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const { data } = await response.json();
+  return {
+    repos: data
+  };
+}
+
 export async function getRepo(id: number) {
   const url = `${baseUrl}/api/repos?id=${id}`;
   const response = await fetch(url, {

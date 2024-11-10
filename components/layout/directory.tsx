@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useDebounce } from '@/lib/hooks/use-debounce';
 import { useEffect, useState } from 'react';
-import { GitHubIcon, LoadingDots, SearchIcon } from '@/components/icons';
+import { ExpandingArrow, GitHubIcon, LoadingDots, SearchIcon } from '@/components/icons';
 import DirectoryResults from './directory-results';
-import { searchRepos } from 'src/services/repo.service';
+import { getReposByCreationDate, searchRepos } from 'src/services/repo.service';
 import { getAllLanguages } from 'src/services/language.service';
 
 export default function Directory({
@@ -27,6 +27,12 @@ export default function Directory({
   useEffect(() => {
     performSearch();
   }, [debouncedQuery, selectedLanguage, selectedTopic]);
+
+  async function loadMoreButtonClicked() {
+    const oldestRepos = repos[repos.length - 1].repos;
+    const oldestRepo = oldestRepos[oldestRepos.length - 1];
+    const response = await getReposByCreationDate(oldestRepo.created_at);
+  }
 
   async function performSearch() {
     const queryParams = new URLSearchParams();
@@ -148,6 +154,14 @@ export default function Directory({
                 </h3>
               </div>
               <DirectoryResults repos={repo.repos} />
+              <div className="m-3 flex flex-col justify-center align-center">
+                <button
+                  onClick={() => loadMoreButtonClicked()}
+                  className="inline-flex justify-center px-4 py-2 border border-gray-800 hover:border-white shadow-sm text-sm font-medium rounded-md text-white font-mono bg-black focus:outline-none focus:ring-0 transition-all"
+                >
+                  <span>Load More</span>
+                </button>
+              </div>
             </div>
           ))
         )

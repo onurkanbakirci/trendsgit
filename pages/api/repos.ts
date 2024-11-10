@@ -5,7 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { id, name, language } = req.query;
+  const { id, name, language, created_at } = req.query;
 
   try {
     if (id) {
@@ -26,7 +26,17 @@ export default async function handler(
         whereClause.full_name = { contains: name as string };
       }
       if (language) {
-        whereClause.language = { contains: language as string }; // Add language filter
+        whereClause.language = { contains: language as string };
+      }
+      if (created_at) {
+        const createdDate = new Date(created_at as string);
+        const oneWeekPrior = new Date(
+          createdDate.getTime() - 7 * 24 * 60 * 60 * 1000
+        );
+        whereClause.created_at = {
+          gte: oneWeekPrior,
+          lte: createdDate
+        };
       }
 
       const repos = await prisma.repo.findMany({
@@ -39,7 +49,13 @@ export default async function handler(
       return res.status(200).json({ data: repos });
     }
 
+    const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     const repos = await prisma.repo.findMany({
+      where: {
+        created_at: {
+          gte: oneWeekAgo
+        }
+      },
       orderBy: {
         created_at: 'desc'
       }
