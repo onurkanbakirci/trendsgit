@@ -29,9 +29,11 @@ export default function Directory({
   }, [debouncedQuery, selectedLanguage, selectedTopic]);
 
   async function loadMoreButtonClicked() {
+    setLoading(true);
     const oldestRepos = repos[repos.length - 1].repos;
     const oldestRepo = oldestRepos[oldestRepos.length - 1];
     const response = await getReposByCreationDate(oldestRepo.created_at);
+    /* setLoading(false); */
   }
 
   async function performSearch() {
@@ -154,14 +156,6 @@ export default function Directory({
                 </h3>
               </div>
               <DirectoryResults repos={repo.repos} />
-              <div className="m-3 flex flex-col justify-center align-center">
-                <button
-                  onClick={() => loadMoreButtonClicked()}
-                  className="inline-flex justify-center px-4 py-2 border border-gray-800 hover:border-white shadow-sm text-sm font-medium rounded-md text-white font-mono bg-black focus:outline-none focus:ring-0 transition-all"
-                >
-                  <span>Load More</span>
-                </button>
-              </div>
             </div>
           ))
         )
@@ -178,7 +172,15 @@ export default function Directory({
             <LoadingDots color={'#FFF'} />
           </div>
         )}
+        < div className="m-3 flex flex-col justify-center align-center">
+          <button
+            onClick={() => loadMoreButtonClicked()}
+            className="inline-flex justify-center px-4 py-2 border border-gray-800 hover:border-white shadow-sm text-sm font-medium rounded-md text-white font-mono bg-black focus:outline-none focus:ring-0 transition-all"
+          >
+            <span>Load More</span>
+          </button>
+        </div>
       </nav>
-    </aside>
+    </aside >
   );
 }
