@@ -146,13 +146,11 @@ export default function Directory({
                     ? 'Today'
                     : repo.daysAgo === Math.min(...repos.map(r => r.daysAgo)) + 1
                       ? 'Yesterday'
-                      : repo.daysAgo <= Math.min(...repos.map(r => r.daysAgo)) + 7
-                        ? new Date(repo.repos[0].created_at).toLocaleDateString('en-US', { weekday: 'long' })
-                        : new Date(repo.repos[0].created_at).toLocaleDateString('en-US', {
-                          month: 'long',
-                          day: 'numeric',
-                          year: 'numeric'
-                        })}
+                      : new Date(repo.repos[0].created_at).toLocaleDateString('en-US', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric'
+                      })}
                 </h3>
               </div>
               <DirectoryResults repos={repo.repos} />
