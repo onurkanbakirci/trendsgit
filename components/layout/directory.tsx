@@ -19,6 +19,7 @@ export default function Directory({
   const debouncedQuery = useDebounce(query, 200);
   const [loading, setLoading] = useState(false); // Add a loading state
   const [languages, setLanguages] = useState<string[]>([]); // State for languages
+  const [initialLoading, setInitialLoading] = useState(true); // Add initial loading state
 
   useEffect(() => {
     fetchLanguages();
@@ -28,12 +29,23 @@ export default function Directory({
     performSearch();
   }, [debouncedQuery, selectedLanguage, selectedTopic]);
 
+  useEffect(() => {
+    // Update initial loading when repos are available
+    if (repos.length > 0) {
+      setInitialLoading(false);
+    }
+  }, [repos]);
+
   async function loadMoreButtonClicked() {
     setLoading(true);
     const oldestRepos = repos[repos.length - 1].repos;
     const oldestRepo = oldestRepos[oldestRepos.length - 1];
     const response = await getReposByCreationDate(oldestRepo.created_at);
-    /* setLoading(false); */
+    if (response?.repos) {
+      // Append new repos to existing ones
+      repos.push(...response.repos);
+    }
+    setLoading(false);
   }
 
   async function performSearch() {
@@ -137,47 +149,52 @@ export default function Directory({
         className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden"
         aria-label="Directory"
       >
-        {debouncedQuery.length === 0 && selectedLanguage == "" ? (
-          repos.map((repo) => (
-            <div key={repo.daysAgo} className="relative">
-              <div className="bg-dark-accent-1 px-6 py-1 text-sm font-bold text-white uppercase">
-                <h3>
-                  {repo.daysAgo === Math.min(...repos.map(r => r.daysAgo))
-                    ? 'Today'
-                    : repo.daysAgo === Math.min(...repos.map(r => r.daysAgo)) + 1
-                      ? 'Yesterday'
-                      : new Date(repo.repos[0].created_at).toLocaleDateString('en-US', {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric'
-                      })}
-                </h3>
-              </div>
-              <DirectoryResults repos={repo.repos} />
-            </div>
-          ))
-        )
-          : searchedRepos && searchedRepos.length > 0 ? (
-            <DirectoryResults repos={searchedRepos} />
-          )
-            : !loading && (
-              <div className="px-6 py-6">
-                <p className="text-center text-gray-500">No results found</p>
+        {initialLoading ? (
+          <div className="flex justify-center pt-20">
+            <LoadingDots color="#FFF" />
+          </div>
+        ) : (
+          <>
+            {debouncedQuery.length === 0 && selectedLanguage === "" ? (
+              repos.map((repo) => (
+                <div key={repo.daysAgo} className="relative">
+                  <div className="bg-dark-accent-1 px-6 py-1 text-sm font-bold text-white uppercase">
+                    <h3>
+                      {repo.daysAgo === Math.min(...repos.map(r => r.daysAgo))
+                        ? 'Today'
+                        : repo.daysAgo === Math.min(...repos.map(r => r.daysAgo)) + 1
+                          ? 'Yesterday'
+                          : new Date(repo.repos[0].created_at).toLocaleDateString('en-US', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
+                    </h3>
+                  </div>
+                  <DirectoryResults repos={repo.repos} />
+                </div>
+              ))
+            )
+              : searchedRepos && searchedRepos.length > 0 ? (
+                <DirectoryResults repos={searchedRepos} />
+              )
+                : !loading && (
+                  <div className="px-6 py-6">
+                    <p className="text-center text-gray-500">No results found</p>
+                  </div>
+                )}
+            {!loading && repos.length > 0 && (
+              <div className="m-3 flex flex-col justify-center align-center">
+                <button
+                  onClick={() => loadMoreButtonClicked()}
+                  className="inline-flex justify-center px-4 py-2 border border-gray-800 hover:border-white shadow-sm text-sm font-medium rounded-md text-white font-mono bg-black focus:outline-none focus:ring-0 transition-all"
+                >
+                  {loading ? <LoadingDots color="#FFF" /> : <span>Load More</span>}
+                </button>
               </div>
             )}
-        {loading && (
-          <div className="flex justify-center">
-            <LoadingDots color={'#FFF'} />
-          </div>
+          </>
         )}
-        < div className="m-3 flex flex-col justify-center align-center">
-          <button
-            onClick={() => loadMoreButtonClicked()}
-            className="inline-flex justify-center px-4 py-2 border border-gray-800 hover:border-white shadow-sm text-sm font-medium rounded-md text-white font-mono bg-black focus:outline-none focus:ring-0 transition-all"
-          >
-            <span>Load More</span>
-          </button>
-        </div>
       </nav>
     </aside >
   );

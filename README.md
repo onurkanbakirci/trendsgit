@@ -32,21 +32,70 @@ Ready to explore? Visit our website and start uncovering the trends in open-sour
 - **Endpoint**: `/api/repos`
 - **Method**: `GET`
 - **Query Parameters**:
-  - `id`: (optional) The ID of the repository to fetch a specific repo.
-  - `name`: (optional) A string to filter repositories by name.
-  - `language`: (optional) A string to filter repositories by programming language.
+  - `created_at`: (optional) Filter repositories by date
+- **Description**: Returns repositories grouped by days ago (within the last week)
 - **Example Request**:
   ```http
-  GET https://trendsgit.vercel.app/api/repos?id=123
+  GET https://trendsgit.vercel.app/api/repos
   ```
-  This request fetches the repository with ID 123.
+- **Response Format**:
+  ```json
+  {
+    "data": [
+      {
+        "daysAgo": 0,
+        "repos": [/* array of repositories */]
+      },
+      {
+        "daysAgo": 1,
+        "repos": [/* array of repositories */]
+      }
+    ]
+  }
+  ```
+
+### Get Single Repository
+- **Endpoint**: `/api/repos/[id]`
+- **Method**: `GET`
+- **Parameters**:
+  - `id`: Repository ID (required)
+- **Example Request**:
+  ```http
+  GET https://trendsgit.vercel.app/api/repos/123
+  ```
+- **Response Format**:
+  ```json
+  {
+    "data": {
+      "id": "123",
+      "name": "repository-name",
+      // ... other repository details
+    }
+  }
+  ```
+
+### Search Repositories
+- **Endpoint**: `/api/repos/search/[query]`
+- **Method**: `GET`
+- **Query Parameters**:
+  - `language`: Filter by programming language
+  - `full_name`: Filter by repository full name
+- **Example Request**:
+  ```http
+  GET https://trendsgit.vercel.app/api/repos/search?language=JavaScript&full_name=example
+  ```
 
 ### Get Languages
 - **Endpoint**: `/api/languages`
 - **Method**: `GET`
-- **Response**: Returns a list of supported programming languages.
+- **Description**: Returns a list of all supported programming languages
 - **Example Request**:
   ```http
   GET https://trendsgit.vercel.app/api/languages
   ```
-  This request retrieves all supported programming languages.
+- **Response Format**:
+  ```json
+  {
+    "data": ["TypeScript", "JavaScript", "Python", /* ... */]
+  }
+  ```
