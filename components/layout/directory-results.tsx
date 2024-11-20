@@ -16,7 +16,7 @@ export default function DirectoryResults({ repos }: { repos: any[] }) {
   return (
     <ul role="list" className="relative z-0 directory-divide-y">
       {repos?.map((repo) => (
-        <li key={repo.id}>
+        <li key={repo.id} className="hover:bg-gray-800/50 active:bg-gray-800 transition-all duration-200 animate-fade-in">
           <Link href={`/${repo.id}`}>
             <div className="relative px-6 py-4 flex items-center space-x-3 focus-within:ring-0">
               <div className="flex-shrink-0 h-12 w-12 rounded-full overflow-hidden">
@@ -53,7 +53,7 @@ export default function DirectoryResults({ repos }: { repos: any[] }) {
                     <WatchIcon />
                     {formatNumber(repo.subscribers_count)}
                   </div>
-                 {/*  {repo.language && (
+                  {/*  {repo.language && (
                     <div className="flex items-center">
                       <span className={`w-3 h-3 rounded-full mr-2 ${languageColors[repo.language] || 'bg-gray-400'
                         }`} />
