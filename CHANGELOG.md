@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/onurkanbakirci/trendsgit/compare/v1.0.1...v1.0.2) (2025-05-10)
+
+
+### Bug Fixes
+
+* add NEXT_PUBLIC_API_URL environment variable to Dockerfile ([8603255](https://github.com/onurkanbakirci/trendsgit/commit/86032557ad74b8e4c8f8d3362268bb40366c713f))
+
 ## [1.0.1](https://github.com/onurkanbakirci/trendsgit/compare/v1.0.0...v1.0.1) (2025-05-10)
 
 
