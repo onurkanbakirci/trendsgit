@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/onurkanbakirci/trendsgit/compare/v1.0.0...v1.0.1) (2025-05-10)
+
+
+### Bug Fixes
+
+* update Docker build context and file path ([92bc663](https://github.com/onurkanbakirci/trendsgit/commit/92bc663fe398823a860e0f4b506dc36b6b988ba1))
+
 ## 1.0.0 (2025-05-10)
 
 
