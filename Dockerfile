@@ -82,6 +82,7 @@ EXPOSE 3000
 
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+ENV NEXT_PUBLIC_API_URL="http://localhost:3000"
 # Set DATABASE_URL environment variable to match Prisma schema
 ENV DATABASE_URL="file:/app/prisma/trendsgit.db"
 
