@@ -14,7 +14,6 @@ const nextConfig = {
     legacyBrowsers: false,
     browsersListForSwc: true
   },
-  target: 'serverless'
 };
 
 module.exports = nextConfig;
