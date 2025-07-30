@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.4.0](https://github.com/onurkanbakirci/trendsgit/compare/v1.3.0...v1.4.0) (2025-07-30)
+
+
+### Features
+
+* new entities added ([7bba29d](https://github.com/onurkanbakirci/trendsgit/commit/7bba29de67e667efeacfa757ffb1b5fc1575595a))
+* new entities added ([36da100](https://github.com/onurkanbakirci/trendsgit/commit/36da1000f52d4d506afa63161b9152ed8810f2f5))
+* new entities added ([f7faa05](https://github.com/onurkanbakirci/trendsgit/commit/f7faa05e8535d3968c1188d8b8da8e93f18420d8))
+* new entities added ([fe9a0b4](https://github.com/onurkanbakirci/trendsgit/commit/fe9a0b46fe52fb772966b231536d9591d45e31ee))
+* new entities added ([777c542](https://github.com/onurkanbakirci/trendsgit/commit/777c542b430dd13f8885dd3314927ce84636b02d))
+* new entities added ([9c6f73e](https://github.com/onurkanbakirci/trendsgit/commit/9c6f73efde0a7a35a358c6f992df77fb8a6d2edd))
+* new entities added ([68f25e4](https://github.com/onurkanbakirci/trendsgit/commit/68f25e4d78ed8625274bc5a4df097c8a2e616344))
+
+
+### Bug Fixes
+
+* clean up TypeScript references and remove deprecated configurations ([7116ce5](https://github.com/onurkanbakirci/trendsgit/commit/7116ce59cd2938be8a7dd1ce2eeece07f7db69d8))
+* remove Netlify plugin dependency from package.json ([122fe2e](https://github.com/onurkanbakirci/trendsgit/commit/122fe2e893bdb642644b7afa92bd3ca479367580))
+* remove netlify.toml configuration and update TypeScript references ([9031531](https://github.com/onurkanbakirci/trendsgit/commit/903153146a070203c6fd9fa79b469d6d9b6d5756))
+* remove serverless target from next.config.js ([b6522b6](https://github.com/onurkanbakirci/trendsgit/commit/b6522b6e095c964c1387a0401676492dd0092859))
+* remove unnecessary redirects from netlify.toml ([8049eae](https://github.com/onurkanbakirci/trendsgit/commit/8049eae4c8c11090ad1921383b3aab66e49f0408))
+
 ## [1.3.0](https://github.com/onurkanbakirci/trendsgit/compare/v1.2.0...v1.3.0) (2025-07-23)
 
 
