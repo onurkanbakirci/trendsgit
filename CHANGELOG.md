@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.0](https://github.com/onurkanbakirci/trendsgit/compare/v1.4.0...v1.5.0) (2025-08-02)
+
+
+### Features
+
+* new entities added ([33668b1](https://github.com/onurkanbakirci/trendsgit/commit/33668b1ce0887b9f5928a19e7411f8c6458c6a0b))
+* new entities added ([210a75f](https://github.com/onurkanbakirci/trendsgit/commit/210a75fe182298a036f0bce692442a1b3932c4fa))
+* new entities added ([0142562](https://github.com/onurkanbakirci/trendsgit/commit/0142562aca1f97d3782b024a6308f178078cb29d))
+
 ## [1.4.0](https://github.com/onurkanbakirci/trendsgit/compare/v1.3.0...v1.4.0) (2025-07-30)
 
 
