@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.7.0](https://github.com/onurkanbakirci/trendsgit/compare/v1.6.0...v1.7.0) (2025-09-27)
+
+
+### Features
+
+* new entities added ([e9afe72](https://github.com/onurkanbakirci/trendsgit/commit/e9afe726211e0f324958924f88f9d507affd3cfd))
+* new entities added ([cc4bcf7](https://github.com/onurkanbakirci/trendsgit/commit/cc4bcf7aee4f551f04bf5dbb8ef772a68fdd4222))
+* new entities added ([1af9bf2](https://github.com/onurkanbakirci/trendsgit/commit/1af9bf267b7f1c89f8615b6162463b4c62eb837f))
+* new entities added ([7ac34e4](https://github.com/onurkanbakirci/trendsgit/commit/7ac34e4f69551894ccfc54f359ff66aed34ae64d))
+
 ## [1.6.0](https://github.com/onurkanbakirci/trendsgit/compare/v1.5.0...v1.6.0) (2025-09-23)
 
 
