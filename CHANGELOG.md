@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.7.0](https://github.com/onurkanbakirci/trendsgit/compare/v1.6.0...v1.7.0) (2025-10-18)
+
+
+### Features
+
+* new entities added ([748258f](https://github.com/onurkanbakirci/trendsgit/commit/748258fd0d8d71b5a62871488871f2115f05ea1f))
+* new entities added ([5eabd48](https://github.com/onurkanbakirci/trendsgit/commit/5eabd4835be1b5929aedc91fac7b357da21e382d))
+* new entities added ([a31cdda](https://github.com/onurkanbakirci/trendsgit/commit/a31cdda99327f48ada85c901caaa354e37f5890e))
+* new entities added ([db1384d](https://github.com/onurkanbakirci/trendsgit/commit/db1384d012555cadf2eec4df7299028b189c7b92))
+* new entities added ([90f017a](https://github.com/onurkanbakirci/trendsgit/commit/90f017a25d84d1d5f918ec388c1afa796a74c18d))
+* new entities added ([d2e0af9](https://github.com/onurkanbakirci/trendsgit/commit/d2e0af9a0c08aecab5f311fffa6841bd2b72661d))
+* new entities added ([906cd6d](https://github.com/onurkanbakirci/trendsgit/commit/906cd6d7e63f54653c54066fe5e9c92bf6de755d))
+* new entities added ([e6eabae](https://github.com/onurkanbakirci/trendsgit/commit/e6eabae765d068e5777790fd3e44438eeb03fa64))
+* new entities added ([fee0acc](https://github.com/onurkanbakirci/trendsgit/commit/fee0acc6a6125fdee67ec360fbc641085eb6c846))
+* new entities added ([c5d5fce](https://github.com/onurkanbakirci/trendsgit/commit/c5d5fce579d7ae0a06082b00a8a7b3c666b5976c))
+* new entities added ([f3e7441](https://github.com/onurkanbakirci/trendsgit/commit/f3e7441b683df79bf9326797d75cc5adfc260432))
+* new entities added ([c3252bc](https://github.com/onurkanbakirci/trendsgit/commit/c3252bc3764e234cc1a53999103050a087efbbc1))
+* new entities added ([1077d58](https://github.com/onurkanbakirci/trendsgit/commit/1077d586ad61109e49a51d9df2789b2bb46e0e96))
+* new entities added ([77b8c1a](https://github.com/onurkanbakirci/trendsgit/commit/77b8c1a033ba1e1130dfffa83a4277bce25461b0))
+* new entities added ([4770fb6](https://github.com/onurkanbakirci/trendsgit/commit/4770fb6be675bd84bb883f2b2712e8f5812e9424))
+* new entities added ([906ecda](https://github.com/onurkanbakirci/trendsgit/commit/906ecdaa2cc73eabba54ba81946d8eb372ead0f7))
+* new entities added ([df554ac](https://github.com/onurkanbakirci/trendsgit/commit/df554ac6e8227418ae4eede5aa225118a4f1a412))
+* new entities added ([329f5cc](https://github.com/onurkanbakirci/trendsgit/commit/329f5cc0b5e85e65c5cf1f5746db08683d522621))
+* new entities added ([59ba5c1](https://github.com/onurkanbakirci/trendsgit/commit/59ba5c19fa8b2b62f4c481f3fcfda27a1d4c3e8f))
+* new entities added ([5b8cb6f](https://github.com/onurkanbakirci/trendsgit/commit/5b8cb6f142f22619964eefaba77e2ea945d5bbdd))
+* new entities added ([334d724](https://github.com/onurkanbakirci/trendsgit/commit/334d7244dcd075b4483c6400edc6a945dee0a550))
+* new entities added ([e9afe72](https://github.com/onurkanbakirci/trendsgit/commit/e9afe726211e0f324958924f88f9d507affd3cfd))
+* new entities added ([cc4bcf7](https://github.com/onurkanbakirci/trendsgit/commit/cc4bcf7aee4f551f04bf5dbb8ef772a68fdd4222))
+* new entities added ([1af9bf2](https://github.com/onurkanbakirci/trendsgit/commit/1af9bf267b7f1c89f8615b6162463b4c62eb837f))
+* new entities added ([7ac34e4](https://github.com/onurkanbakirci/trendsgit/commit/7ac34e4f69551894ccfc54f359ff66aed34ae64d))
+
 ## [1.6.0](https://github.com/onurkanbakirci/trendsgit/compare/v1.5.0...v1.6.0) (2025-09-23)
 
 
